@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seahawks Fan Page</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            background: linear-gradient(135deg, #002244, #69BE28);
+            background-size: 250% 250%;
+            animation: bgMove 10s infinite alternate ease-in-out;
+            color: white;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        header {
+            padding: 25px;
+            text-align: center;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid #69BE28;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            text-shadow: 0 0 15px #69BE28;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .gallery img {
+            width: 450px;
+            max-width: 90%;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            transition: 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 35px rgba(105,190,40,0.7);
+        }
+
+        .clicker-box {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        button {
+            background: #69BE28;
+            color: #002244;
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.2s;
+            box-shadow: 0 0 15px #69BE28;
+        }
+
+        button:hover {
+            background: #7ff735;
+            box-shadow: 0 0 20px #7ff735;
+        }
+
+        #count {
+            font-size: 2rem;
+            margin-top: 20px;
+            font-weight: 600;
+            text-shadow: 0 0 10px white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>💚 Seattle Seahawks Fan Page 🟦</h1>
+</header>
+
+<section class="gallery">
+
+    <!-- Image 1 -->
+    <img src="https://static.clubs.nfl.com/image/upload/t_editorial_landscape_12_desktop/seahawks/ywanb3v0ahgzxa91nx1b" 
+         alt="Seahawks Image 1">
+
+    <!-- Image 2 -->
+    <img src="https://ca-times.brightspotcdn.com/dims4/default/3aaae30/2147483647/strip/true/crop/5142x3427+0+0/resize/2000x1333!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fbd%2F95%2F61c24e5043f09ff37cf6fc04034f%2F2246213576.jpg"
+         alt="Seahawks Image 2">
+
+</section>
+
+<!-- Clicker Button -->
+<div class="clicker-box">
+    <button onclick="increaseCount()">GO HAWKS! 🏈💚</button>
+    <div id="count">Clicks: 0</div>
+</div>
+
+<script>
+    let clicks = 0;
+
+    function increaseCount() {
+        clicks++;
+        document.getElementById("count").innerText = "Clicks: " + clicks;
+    }
+</script>
+
+</body>
+</html>
