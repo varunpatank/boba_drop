@@ -1,124 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta-name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seahawks Fan Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seattle Seahawks Fan Hub</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Oswald', sans-serif;
-            background: linear-gradient(135deg, #002244, #69BE28);
-            background-size: 250% 250%;
-            animation: bgMove 10s infinite alternate ease-in-out;
-            color: white;
-        }
+<style>
+:root {
+    --blue: #002244;
+    --green: #69BE28;
+    --glass: rgba(255,255,255,0.10);
+    --dark: rgba(0,0,0,0.55);
+}
 
-        @keyframes bgMove {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
+body {
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    background: radial-gradient(circle at top, #003366, #001122 60%);
+    color: white;
+    display: flex;
+}
 
-        header {
-            padding: 25px;
-            text-align: center;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(10px);
-            border-bottom: 3px solid #69BE28;
-        }
+nav {
+    width: 240px;
+    background: var(--dark);
+    backdrop-filter: blur(14px);
+    height: 100vh;
+    padding: 30px;
+    border-right: 2px solid var(--green);
+    position: fixed;
+}
 
-        header h1 {
-            font-size: 3rem;
-            text-shadow: 0 0 15px #69BE28;
-        }
+nav h2 {
+    font-size: 1.9rem;
+    margin-bottom: 25px;
+    text-shadow: 0 0 12px var(--green);
+}
 
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            padding: 30px;
-        }
+nav a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 1.25rem;
+    margin: 14px 0;
+    padding: 8px 6px;
+    transition: 0.3s;
+    border-radius: 6px;
+}
 
-        .gallery img {
-            width: 450px;
-            max-width: 90%;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-            transition: 0.3s;
-        }
+nav a:hover {
+    background: var(--green);
+    color: #001122;
+    transform: translateX(6px);
+}
 
-        .gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 35px rgba(105,190,40,0.7);
-        }
+.container {
+    margin-left: 270px;
+    padding: 35px;
+    width: calc(100% - 270px);
+}
 
-        .clicker-box {
-            text-align: center;
-            margin: 40px 0;
-        }
+.page {
+    display: none;
+    animation: fadeIn 0.6s ease-out;
+}
 
-        button {
-            background: #69BE28;
-            color: #002244;
-            font-size: 1.5rem;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 700;
-            transition: 0.2s;
-            box-shadow: 0 0 15px #69BE28;
-        }
+.page.active {
+    display: block;
+}
 
-        button:hover {
-            background: #7ff735;
-            box-shadow: 0 0 20px #7ff735;
-        }
+header {
+    background: var(--glass);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--green);
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,255,0,0.2);
+}
 
-        #count {
-            font-size: 2rem;
-            margin-top: 20px;
-            font-weight: 600;
-            text-shadow: 0 0 10px white;
-        }
-    </style>
+.glass-box {
+    background: var(--glass);
+    padding: 25px;
+    margin-top: 35px;
+    border-radius: 12px;
+    border: 1px solid var(--green);
+    box-shadow: 0 0 15px rgba(0,255,0,0.1);
+}
+
+.gallery {
+    margin-top: 40px;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery img {
+    width: 420px;
+    border-radius: 15px;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px var(--green);
+}
+
+.clicker-box {
+    margin: 45px 0;
+    text-align: center;
+}
+
+button {
+    background: var(--green);
+    color: var(--blue);
+    padding: 15px 35px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.25s;
+    box-shadow: 0 0 15px var(--green);
+}
+
+button:hover {
+    background: #7dff4c;
+    box-shadow: 0 0 20px #7dff4c;
+}
+
+#count {
+    margin-top: 20px;
+    font-size: 2rem;
+}
+
+.player-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.player-card {
+    background: var(--glass);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--green);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(0,255,0,0.15);
+}
+
+.player-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 25px var(--green);
+}
+
+.player-card img {
+    width: 90%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.timeline {
+    margin-top: 30px;
+    border-left: 3px solid var(--green);
+    padding-left: 25px;
+}
+
+.event {
+    margin-bottom: 35px;
+    background: var(--glass);
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--green);
+    backdrop-filter: blur(8px);
+}
+
+.year {
+    font-size: 1.8rem;
+    color: var(--green);
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>💚 Seattle Seahawks Fan Page 🟦</h1>
-</header>
+<nav>
+    <h2>SEAHAWKS HUB</h2>
+    <a href="#" onclick="showPage('home')">🏠 Home</a>
+    <a href="#" onclick="showPage('players')">👤 Players</a>
+    <a href="#" onclick="showPage('history')">📘 History</a>
+</nav>
 
-<section class="gallery">
+<div class="container">
 
-    <!-- Image 1 -->
-    <img src="https://static.clubs.nfl.com/image/upload/t_editorial_landscape_12_desktop/seahawks/ywanb3v0ahgzxa91nx1b" 
-         alt="Seahawks Image 1">
+<div id="home" class="page active">
+    <header>
+        <h1>💚 Seattle Seahawks Fan Hub 🟦</h1>
+    </header>
 
-    <!-- Image 2 -->
-    <img src="https://ca-times.brightspotcdn.com/dims4/default/3aaae30/2147483647/strip/true/crop/5142x3427+0+0/resize/2000x1333!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fbd%2F95%2F61c24e5043f09ff37cf6fc04034f%2F2246213576.jpg"
-         alt="Seahawks Image 2">
+    <div class="glass-box">
+        <h2>About the Seahawks</h2>
+        <p>The Seahawks reflect the passion and resilience of the Pacific Northwest. From the Legion of Boom to high-powered offenses, Seattle is home to one of the NFL's greatest fanbases—the 12s.</p>
+        <p>This hub celebrates players, history, and unforgettable Seahawks moments with a modern and interactive design.</p>
+    </div>
 
-</section>
+    <h2 style="margin-top:40px;">Gallery</h2>
+    <div class="gallery">
+        <img src="https://static.clubs.nfl.com/image/upload/t_editorial_landscape_12_desktop/seahawks/ywanb3v0ahgzxa91nx1b">
+        <img src="https://ca-times.brightspotcdn.com/dims4/default/3aaae30/2147483647/strip/true/crop/5142x3427+0+0/resize/2000x1333!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fbd%2F95%2F61c24e5043f09ff37cf6fc04034f%2F2246213576.jpg">
+    </div>
 
-<!-- Clicker Button -->
-<div class="clicker-box">
-    <button onclick="increaseCount()">GO HAWKS! 🏈💚</button>
-    <div id="count">Clicks: 0</div>
+    <div class="clicker-box">
+        <button onclick="increaseCount()">GO HAWKS! 🏈💚</button>
+        <div id="count">Clicks: 0</div>
+    </div>
+</div>
+
+<div id="players" class="page">
+    <header><h1>🏈 Seahawks Players</h1></header>
+    <p>Meet the stars who shaped Seattle’s identity—past and present.</p>
+
+    <div class="player-grid">
+
+        <div class="player-card">
+            <img src="https://static.clubs.nfl.com/seahawks/player-headshots/dk-metcalf.jpg">
+            <h2>DK Metcalf</h2>
+            <div class="position">Wide Receiver</div>
+            <p>A dominant athlete with elite strength and explosive playmaking ability.</p>
+        </div>
+
+        <div class="player-card">
+            <img src="https://static.clubs.nfl.com/seahawks/player-headshots/tyler-lockett.jpg">
+            <h2>Tyler Lockett</h2>
+            <div class="position">Wide Receiver</div>
+            <p>Known for clutch catches, perfect routes, and unmatched consistency.</p>
+        </div>
+
+        <div class="player-card">
+            <img src="https://static.clubs.nfl.com/seahawks/player-headshots/bobby-wagner.jpg">
+            <h2>Bobby Wagner</h2>
+            <div class="position">Linebacker</div>
+            <p>One of the greatest linebackers of his era with leadership and elite instincts.</p>
+        </div>
+
+        <div class="player-card">
+            <img src="https://static.clubs.nfl.com/seahawks/player-headshots/gino-smith.jpg">
+            <h2>Geno Smith</h2>
+            <div class="position">Quarterback</div>
+            <p>Accurate, calm, and one of the most efficient passers in modern Seahawks history.</p>
+        </div>
+
+    </div>
+</div>
+
+<div id="history" class="page">
+    <header><h1>📘 Seahawks History</h1></header>
+    <p>A timeline of defining moments from Seattle’s storied franchise.</p>
+
+    <div class="timeline">
+
+        <div class="event">
+            <div class="year">1976</div>
+            <p>The Seahawks join the NFL as an expansion team.</p>
+        </div>
+
+        <div class="event">
+            <div class="year">1983</div>
+            <p>Seattle wins its first playoff games and reaches the AFC Championship.</p>
+        </div>
+
+        <div class="event">
+            <div class="year">2005</div>
+            <p>The Seahawks reach their first Super Bowl led by MVP Shaun Alexander.</p>
+        </div>
+
+        <div class="event">
+            <div class="year">2013</div>
+            <p>Seattle dominates Denver 43–8 to win Super Bowl XLVIII.</p>
+        </div>
+
+        <div class="event">
+            <div class="year">2012–2015</div>
+            <p>The Legion of Boom becomes one of the greatest defenses in NFL history.</p>
+        </div>
+
+    </div>
+</div>
+
 </div>
 
 <script>
-    let clicks = 0;
+function showPage(pageID) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(pageID).classList.add("active");
+}
 
-    function increaseCount() {
-        clicks++;
-        document.getElementById("count").innerText = "Clicks: " + clicks;
-    }
+let clicks = 0;
+function increaseCount() {
+    clicks++;
+    document.getElementById("count").innerText = "Clicks: " + clicks;
+}
 </script>
 
 </body>
